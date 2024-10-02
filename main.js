@@ -1,4 +1,6 @@
 import App from './App'
+import './assets/css/tailwind.css'
+
 
 // #ifndef VUE3
 import Vue from 'vue'
