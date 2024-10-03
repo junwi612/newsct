@@ -1,6 +1,6 @@
 <template>
     <view>
-        <view class="bg-white overflow-hidden shadow rounded-lg p-5">
+        <view class="bg-white  hover:bg-gray-100 transition-colors overflow-hidden shadow rounded-lg p-5">
               <h3 class="text-lg font-semibold text-gray-900 mb-4">热门话题</h3>
               <ul class="space-y-2">
                 <li
