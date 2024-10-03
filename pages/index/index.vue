@@ -2,11 +2,12 @@
   <div class="min-h-screen bg-gray-100">
     <!-- 顶部导航栏 -->
     <nav class="bg-white shadow">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex-shrink-0 flex items-center">
-            <span class="text-2xl font-bold text-gray-800">NewsApp</span>
-          </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex-shrink-0 flex items-center">
+          <span class="text-2xl font-bold text-gray-800">NewsApp</span>
+        </div>
+        <div class="flex items-center">
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <a
               v-for="(item, index) in navItems"
@@ -17,10 +18,34 @@
               {{ item }}
             </a>
           </div>
+          <button
+            @click="toggleMenu"
+            class="sm:hidden ml-4 text-gray-600 hover:text-gray-900 mt-3 px-3 py-2 rounded-md text-sm font-medium"
+          >
+            更多
+          </button>
         </div>
       </div>
-    </nav>
+    </div>
 
+    <transition name="slide-fade">
+      <div v-if="showMenu" @click.self="closeMenu" class="fixed inset-0 z-50 flex items-start justify-center">
+        <div class="bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4">
+
+          <div class="flex flex-col">
+            <a
+              v-for="(item, index) in navItems"
+              :key="index"
+              href="#"
+              class="text-gray-600 hover:text-gray-900 mt-2 px-3 py-2 rounded-md text-sm font-medium"
+            >
+              {{ item }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </nav>
     <!-- 主要内容区 -->
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <!-- 搜索栏 -->
@@ -116,7 +141,7 @@
   export default {
     setup() {
       const navItems = ref(["首页", "国内", "国际", "科技", "体育"]);
-
+      const showMenu = ref(false); // 添加这个变量
       const newsList = ref([
         {
           id: 1,
@@ -165,9 +190,16 @@
         "科技创新",
         "环境保护",
       ]);
+      const toggleMenu = () => {
+      showMenu.value = !showMenu.value;
+    };
 
+    const closeMenu = () => {
+      showMenu.value = false;
+    };
       const onSearch = (e) => {
-       
+        console.log("搜索:", e.value);
+        // 实现搜索逻辑
       };
 
       const goToDetail = (id) => {
@@ -183,9 +215,25 @@
         hotTopics,
         onSearch,
         goToDetail,
+        showMenu,
+        toggleMenu,
+        closeMenu
       };
     },
   };
 </script>
 
-<style scoped></style>
+<style scoped>
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+
+</style>
