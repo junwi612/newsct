@@ -8,19 +8,9 @@
             <span class="text-2xl font-bold text-gray-800">NewsApp</span>
           </div>
           <div class="flex items-center">
-            <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
-              <a
-                v-for="(item, index) in navItems"
-                :key="index"
-                href="#"
-                class="text-gray-600 hover:text-gray-900 py-2 rounded-md font-medium"
-              >
-                {{ item }}
-              </a>
-            </div>
             <button
               @click="toggleMenu"
-              class="sm:hidden ml-4 text-gray-600 hover:text-gray-900 mt-2 px-2 py-2 rounded-md text-sm font-medium flex items-center"
+              class="ml-4 text-gray-600 hover:text-gray-900 mt-2 px-2 py-2 rounded-md text-sm font-medium flex items-center"
             >
               <svg
                 v-if="!showMenu"
@@ -61,17 +51,17 @@
         <div
           v-show="showMenu"
           @click.self="closeMenu"
-          class="fixed inset-0 z-50 flex items-start justify-center"
+          class="fixed inset-0 z-50 flex items-start justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
           <div
-            class="bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4"
+            class="bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4 ml-auto"
           >
             <div class="flex flex-col">
               <a
                 v-for="(item, index) in navItems"
                 :key="index"
                 href="#"
-                class="text-gray-600 hover:text-gray-900 mt-2 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 hover:text-gray-900 mt-2 px-3 py-2 text-sm font-medium border-b border-gray-100 hover:border-gray-500 transition duration-200"
               >
                 {{ item }}
               </a>
@@ -136,7 +126,7 @@
 
 <script setup>
   import "swiper/swiper-bundle.css";
-  import { ref } from "vue";
+  import { ref, onMounted, onBeforeUnmount } from "vue";
   import Header from "../../components/Header.vue";
   import Card from "@/components/Card.vue";
   import NewsList from "@/components/NewsList.vue";
@@ -180,6 +170,24 @@
       time: "昨天",
     },
   ]);
+
+  const lastScrollTop = ref(0);
+
+  const handleScroll = () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (showMenu.value && st > lastScrollTop.value) {
+      // 如果菜单打开并且向下滚动，则隐藏菜单
+      showMenu.value = false;
+    }
+    lastScrollTop.value = st <= 0 ? 0 : st; // 处理移动设备或负滚动
+  };
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
 
   const weather = ref({
     location: "北京",
