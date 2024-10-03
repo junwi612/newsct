@@ -50,7 +50,7 @@
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <!-- 搜索栏 -->
       <div class="px-4 sm:px-0 mb-6">
-        <uni-search-bar placeholder="搜索新闻" @confirm="onSearch" />
+        <uni-search-bar   placeholder="搜索新闻" @confirm="onSearch" />
       </div>
 
       <div class="px-4 sm:px-0 flex flex-col lg:flex-row">
