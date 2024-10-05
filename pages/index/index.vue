@@ -1,16 +1,17 @@
 <template>
   <view class="min-h-screen bg-gray-100">
     <!-- 1顶部导航栏 -->
-    <nav class="bg-white shadow">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex-shrink-0 flex items-center">
+    <view class="bg-white shadow">
+      <view class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <view class="flex justify-between h-16">
+          <view class="flex-shrink-0 flex items-center">
             <span class="text-2xl font-bold text-gray-800">NewsApp</span>
-          </div>
-          <div class="flex items-center">
+          </view>
+          <view class="flex items-center">
             <button
               @click="toggleMenu"
-              class="ml-4 text-gray-600 hover:text-gray-900 mt-2 px-2 py-2 rounded-md text-sm font-medium flex items-center"
+              plain="true"
+              class="ml-4  text-gray-600 hover:text-gray-900 mt-2 px-2 py-2 rounded-md text-sm font-medium flex items-center"
             >
               <svg
                 v-if="!showMenu"
@@ -43,20 +44,20 @@
                 />
               </svg>
             </button>
-          </div>
-        </div>
-      </div>
+          </view>
+        </view>
+      </view>
 
       <transition name="slide-fade">
-        <div
+        <view
           v-show="showMenu"
           @click.self="closeMenu"
           class="fixed inset-0 z-50 flex items-start justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <div
+          <view
             class="bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4 ml-auto"
           >
-            <div class="flex flex-col">
+            <view class="flex flex-col">
               <a
                 v-for="(item, index) in navItems"
                 :key="index"
@@ -65,11 +66,11 @@
               >
                 {{ item }}
               </a>
-            </div>
-          </div>
-        </div>
+            </view>
+          </view>
+        </view>
       </transition>
-    </nav>
+    </view>
     <!-- 搜索栏  px-5 mt-2 lg:hidden -->
     <view class="px-5 mt-3 sm:px-9 lg:hidden">
       <uni-search-bar
@@ -222,4 +223,8 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+  uni-button[plain] {
+    border: 1px solid #35353510 !important;
+}
+
 </style>
