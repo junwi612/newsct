@@ -1,13 +1,13 @@
 <template>
-  <view class="min-h-screen bg-gray-100">
+  <div class="min-h-screen bg-gray-100">
     <!-- 1顶部导航栏 -->
-    <view class="bg-white shadow">
-      <view class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <view class="flex justify-between h-16">
-          <view class="flex-shrink-0 flex items-center">
+    <div class="bg-white shadow">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex-shrink-0 flex items-center">
             <span class="text-2xl font-bold text-gray-800">NewsApp</span>
-          </view>
-          <view class="flex items-center">
+          </div>
+          <div class="flex items-center">
             <button
               @click="toggleMenu"
               plain="true"
@@ -44,20 +44,20 @@
                 />
               </svg>
             </button>
-          </view>
-        </view>
-      </view>
+          </div>
+        </div>
+      </div>
 
       <transition name="slide-fade">
-        <view
+        <div
           v-show="showMenu"
           @click.self="closeMenu"
           class="fixed inset-0 z-50 flex items-start justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <view
+          <div
             class="bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4 ml-auto"
           >
-            <view class="flex flex-col">
+            <div class="flex flex-col">
               <a
                 v-for="(item, index) in navItems"
                 :key="index"
@@ -66,13 +66,13 @@
               >
                 {{ item }}
               </a>
-            </view>
-          </view>
-        </view>
+            </div>
+          </div>
+        </div>
       </transition>
-    </view>
+    </div>
     <!-- 搜索栏  px-5 mt-2 lg:hidden -->
-    <view class="px-5 mt-3 sm:px-9 lg:hidden">
+    <div class="px-5 mt-3 sm:px-9 lg:hidden">
       <uni-search-bar
         bgColor="#fff"
         class="uni-mt-10"
@@ -82,47 +82,47 @@
         cancelButton="none"
         @confirm="search"
       />
-    </view>
+    </div>
     <!-- 主要内容区 -->
-    <view class="max-w-7xl mx-auto py-6 pt-2 sm:pt-3 lg:pt-6 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-6 pt-2 sm:pt-3 lg:pt-6 sm:px-6 lg:px-8">
       <!-- 1新闻卡片 -->
       <Card></Card>
-      <view class="px-4 sm:px-0 flex flex-col lg:flex-row">
+      <div class="px-4 sm:px-0 flex flex-col lg:flex-row">
         <!-- 新闻列表1 -->
         <NewsList :newsList="newsList"></NewsList>
 
         <!-- 侧边栏（PC端） -->
-        <view class="lg:w-80 lg:ml-6 mt-6 lg:mt-0">
+        <div class="lg:w-80 lg:ml-6 mt-6 lg:mt-0">
           <!-- 搜索栏 px-4 hidden lg:block sm:px-0 mb-6 -->
           <SearchBar></SearchBar>
 
-          <view class="sticky top-6">
+          <div class="sticky top-6">
             <!-- 天气widget（PC端） sticky top-6  | bg-white overflow-hidden shadow hidden lg:block rounded-lg p-5 mb-6 -->
-            <view
+            <div
               class="bg-white overflow-hidden shadow hidden lg:block rounded-lg p-5 mb-6"
             >
               <h3 class="text-lg font-semibold text-gray-900 mb-4">今日天气</h3>
-              <view class="flex items-center justify-between">
-                <view>
+              <div class="flex items-center justify-between">
+                <div>
                   <p class="text-3xl font-bold text-gray-900">
                     {{ weather.temperature }}°C
                   </p>
                   <p class="text-gray-600">{{ weather.description }}</p>
-                </view>
+                </div>
                 <p class="text-gray-500">{{ weather.location }}</p>
-              </view>
-            </view>
+              </div>
+            </div>
 
             <!-- 热门话题1 -->
             <PopularTopic :hotTopics="hotTopics"></PopularTopic>
-          </view>
-        </view>
-      </view>
+          </div>
+        </div>
+      </div>
 
       <!-- 天气widget（移动端）lg:hidden mt-6 px-4 sm:px-0 -->
       <Weather :weather="weather" class="lg:hidden mt-6 sm:px-0"></Weather>
-    </view>
-  </view>
+    </div>
+  </div>
 </template>
 
 <script setup>
