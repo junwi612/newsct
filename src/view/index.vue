@@ -5,7 +5,9 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex-shrink-0 flex items-center">
-            <span class="text-2xl font-bold text-gray-800">NewsApp</span>
+            <span class="text-2xl font-bold text-gray-800">
+              <NewsLogo></NewsLogo>
+            </span>
           </div>
           <div class="flex items-center">
             <div class="mt-2 lg:hidden text-gray-800">
@@ -133,6 +135,7 @@
   import NewsList from "@/components/index/NewsList.vue";
   import PopularTopic from "@/components/index/PopularTopic.vue";
   import SearchBar from "@/components/index/SearchBar.vue";
+  import NewsLogo from "@/components/index/NewsLogo.vue"
 
   const navItems = ref(["首页", "国内", "国际", "科技", "体育"]);
   const showMenu = ref(false);
