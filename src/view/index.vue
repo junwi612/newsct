@@ -8,6 +8,9 @@
             <span class="text-2xl font-bold text-gray-800">NewsApp</span>
           </div>
           <div class="flex items-center">
+            <div class="mt-2 lg:hidden text-gray-800">
+              <div>☀25°C</div>
+            </div>
             <button
               @click="toggleMenu"
               plain="true"
@@ -73,7 +76,7 @@
     </div>
     <!-- 搜索栏  px-5 mt-2 lg:hidden -->
     <div class="px-5 mt-3 sm:px-9 lg:hidden">
-      <uni-search-bar
+      <!-- <input type="text"
         bgColor="#fff"
         class="uni-mt-10"
         radius="5"
@@ -81,7 +84,7 @@
         clearButton="auto"
         cancelButton="none"
         @confirm="search"
-      />
+      /> -->
     </div>
     <!-- 主要内容区 -->
     <div class="max-w-7xl mx-auto py-6 pt-2 sm:pt-3 lg:pt-6 sm:px-6 lg:px-8">
@@ -94,7 +97,7 @@
         <!-- 侧边栏（PC端） -->
         <div class="lg:w-80 lg:ml-6 mt-6 lg:mt-0">
           <!-- 搜索栏 px-4 hidden lg:block sm:px-0 mb-6 -->
-          <SearchBar></SearchBar>
+          <!-- <SearchBar></SearchBar> -->
 
           <div class="sticky top-6">
             <!-- 天气widget（PC端） sticky top-6  | bg-white overflow-hidden shadow hidden lg:block rounded-lg p-5 mb-6 -->
@@ -118,9 +121,6 @@
           </div>
         </div>
       </div>
-
-      <!-- 天气widget（移动端）lg:hidden mt-6 px-4 sm:px-0 -->
-      <Weather :weather="weather" class="lg:hidden mt-6 sm:px-0"></Weather>
     </div>
   </div>
 </template>
@@ -132,7 +132,6 @@
   import Card from "@/components/index/Card.vue";
   import NewsList from "@/components/index/NewsList.vue";
   import PopularTopic from "@/components/index/PopularTopic.vue";
-  import Weather from "@/components/index/Weather.vue";
   import SearchBar from "@/components/index/SearchBar.vue";
 
   const navItems = ref(["首页", "国内", "国际", "科技", "体育"]);
