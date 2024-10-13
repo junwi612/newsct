@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="flex-1 grid  md:grid-cols-2 lg:grid-cols-3 gap-4">
       <div
         v-for="(item, index) in newsList"
         :key="index"
