@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, watchEffect } from "vue";
   import NewsLogo from "@/components/index/NewsLogo.vue";
 
   const navItems = ref(["首页", "国内", "国际", "科技", "体育"]);
@@ -90,6 +90,27 @@
   const closeMenu = () => {
     showMenu.value = false;
   };
+
+  const lastScrollTop = ref(0);
+  watchEffect(() => {
+    if (showMenu.value) {
+      /**
+       * When the user scrolls down, hide the menu.
+       * This function is added and removed as a window.scroll event listener when
+       * the menu is shown and hidden, respectively.
+       */
+      const handleScroll = () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop.value) {
+          showMenu.value = false;
+          lastScrollTop.value = st;
+        }
+        lastScrollTop.value = st;
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  });
 </script>
 
 <style scoped>
