@@ -1,5 +1,6 @@
 import router from './router'
-import './assets/tailwind-dark.min.css'
+import './assets/css/tailwind-dark.min.css'
+import './assets/css/style.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
