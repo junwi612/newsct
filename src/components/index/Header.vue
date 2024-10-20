@@ -15,47 +15,20 @@
               <span class="ml-1">25°C</span>
             </div>
           </div>
-          <router-link
-            to="/login"
-            class="text-white hidden lg:block bg-gray-800 hover:bg-gray-900 rounded-lg px-4 ml-2 py-2 text-sm duration-300"
-          >
-            登录
-          </router-link>
+          <LinkLogin
+            customClass="text-white hidden lg:block bg-gray-800 hover:bg-gray-900 rounded-lg px-4 ml-2 py-2 text-sm duration-300"
+          ></LinkLogin>
           <button
             @click="toggleMenu"
-            plain="true"
-            class="ml-4 text-gray-600 hover:text-gray-900 px-2 py-2 rounded-md text-sm font-medium flex items-center"
+            class="lg:hidden ml-2 px-2"
+            aria-label="Toggle menu"
+            :aria-expanded="showMenu"
           >
-            <svg
-              v-if="!showMenu"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6 transition-transform duration-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-            <svg
-              v-else
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6 transition-transform duration-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <div class="item-center menu-icon" :class="{ open: showMenu }">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </button>
         </div>
       </div>
@@ -68,7 +41,7 @@
         class="fixed inset-0 z-50 flex items-start justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div
-          class="bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4 ml-auto"
+          class="lg:hidden bg-white rounded-b-lg shadow-lg mt-16 w-full max-w-md p-4 ml-auto"
         >
           <div class="flex flex-col">
             <a
@@ -80,10 +53,14 @@
               {{ item }}
             </a>
           </div>
+          <LinkLogin
+            style="margin-top: 20px"
+            customClass="text-white bg-gray-800 hover:bg-gray-900 rounded-lg px-4 py-2 text-sm duration-300"
+          ></LinkLogin>
         </div>
       </div>
     </transition>
-    <!-- lg -->
+    <!-- lg 显示 navItems -->
     <div class="hidden lg:block"></div>
   </div>
 </template>
@@ -91,10 +68,11 @@
 <script setup>
   import { ref, watchEffect } from "vue";
   import NewsLogo from "@/components/index/NewsLogo.vue";
+  import LinkLogin from "@/components/index/LinkLogin.vue";
 
   const navItems = ref(["首页", "国内", "国际", "科技", "体育"]);
-  const showMenu = ref(false);
 
+  const showMenu = ref(false);
   const toggleMenu = () => {
     showMenu.value = !showMenu.value;
   };
@@ -137,7 +115,50 @@
     transform: translateY(-10px);
   }
 
-  button[plain] {
-    border: 1px solid #35353510 !important;
+  .menu-icon {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin: auto;
+    transition: 0.5s ease-in-out;
+  }
+
+  .menu-icon span {
+    display: block;
+    position: absolute;
+    height: 2.5px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transition: 0.25s ease-in-out;
+  }
+
+  .menu-icon span:nth-child(1) {
+    top: 0px;
+  }
+
+  .menu-icon span:nth-child(2) {
+    top: 10px;
+  }
+
+  .menu-icon span:nth-child(3) {
+    top: 20px;
+  }
+
+  .menu-icon.open span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+  }
+
+  .menu-icon.open span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+  }
+
+  .menu-icon.open span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
   }
 </style>
