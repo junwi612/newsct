@@ -1,9 +1,13 @@
+
 <template>
-  <div>
-    <h1>登录</h1>
+  <div class="particle-container">
+    <Admin></Admin>
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import Admin from "../components/admin/Admin.vue";
+</script>
 
-<style scoped></style>
+<style scoped>
+</style>
