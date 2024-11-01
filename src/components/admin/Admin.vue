@@ -1,6 +1,6 @@
 <template>
   <div
-    class="splash-screen relative flex justify-center items-center w-screen h-screen bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 overflow-hidden"
+    class="splash-screen relative flex justify-center items-center w-screen h-screen bg-gradient-to-r overflow-hidden"
   >
     <Background></Background>
 
